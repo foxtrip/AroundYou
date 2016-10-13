@@ -15,22 +15,18 @@ class App extends React.Component{
       mapList : window.mapMarker
     };
   };
-<<<<<<< 13e5e3bf5dd29617c2d05a8cb22619367171efd4
-
-=======
  
-  // mapClick(event, map){
-  //   // console.log("app clicked", event, map);
-  //   // console.log(event.map);
-  //   this.setState({mapNow: event.map});
-  // }
+  mapClick(event, map){
+    console.log("mpp clicked");
+    //this.setState({mapNow: event.map});
+  }
   // mapRender(e){
   //   this.setState({mapList: })
   // }
   loginRender(e){
     console.log('click?');//
   }
->>>>>>> server
+
   uploadPhoto(){
     console.log('upload!');//업로드 클릭시  1. 지도가 클릭할수 있게하고 2. 클릭시 좌표저장
   }
