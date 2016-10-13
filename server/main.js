@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import router from './routes.js'
+import routes from './routes.js'
 import path from 'path'
 
 const app = express();
@@ -22,7 +22,7 @@ import Pin from '../build/gmaps.js'
 app.use(express.static(__dirname + './../client/public'));
 
 // Server-side routing
-app.use('/', router)
+app.use('/', routes)
 
 // Listen server 0.0.0.0:7777 or localhost:7777
 const server = app.listen(app.get("port"), () => {
