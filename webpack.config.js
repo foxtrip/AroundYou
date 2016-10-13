@@ -22,10 +22,10 @@ module.exports = {
                   })],
                   exclude: /node_modules/
                 },
-                // { 
-                //     test: /\.css$/, 
-                //     loader: "style-loader!css-loader" 
-                // },
+                { 
+                    test: /\.css$/, 
+                    loader: "style-loader!css-loader" 
+                },
                 // { 
                 //     test: /\.png$/, 
                 //     loader: "url-loader?limit=100000" 

@@ -4,7 +4,8 @@ class Login extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      userId : "login",
+      login : "login",
+      signup: "signup"
     };
     // this.loginOn = this.loginOn.bind(this);
   };
@@ -14,7 +15,8 @@ class Login extends React.Component{
   render(){
     return (
       <div>
-        <a href='/upload' onClick={this.props.onClick} ><h1>{this.state.userId}</h1></a>
+        <a href='/login' onClick={this.props.onClick} ><h1>{this.state.login}</h1></a>
+        <a href='/signup' ><h1>{this.state.signup}</h1></a>
         <i> Welcome!</i>
       </div>
     );
