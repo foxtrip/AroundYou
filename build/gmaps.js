@@ -4,39 +4,44 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
 var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Schema = _mongoose2.default.Schema;
+var router = _express2.default.Router();
 
-var pinSchema = new Schema({
-	title: String,
+
+var pinSchema = _mongoose2.default.Schema({ //뼈대생성
+	userid: String,
 	lat: Number,
 	lng: Number,
-	username: String,
 	data: { type: Date, default: Date.now },
 	tag: String, // how does input multiple tag?
-	photo: Buffer
+	image: Buffer
 });
 
-// var Pin = mongoose.model('pin', pinSchema);
+var Pin = _mongoose2.default.model('pin', pinSchema); //model생성
 
-// var pin = new Pin({
-// 	title: "abc",
-// 	lat:37.583248,
-// 	lng:126.985183,
-// 	username: "test1",
-// 	tag: "good, bad, nice",
-// 	photo:""
-// })
+var demoPin = new Pin({
+	userid: "demo",
+	lat: 37.583248,
+	lng: 126.985183,
+	tag: "midnight",
+	photo: ""
+});
 
-// pin.save((err, pin)=> {
-// 	if(err) { console.error(err) };
-// 	console.dir(pin);
-// })
+demoPin.save(function (err, pin) {
+	if (err) {
+		console.error(err);
+	};
+	console.dir(pin);
+});
 
 // 1. 값이 들어가는지 확인 >> 더미값
 // 2. 위도/경도값 받아오는지 확인 >> gmaps에서 받아오는 값

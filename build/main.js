@@ -8,10 +8,6 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _routes = require('./routes.js');
-
-var _routes2 = _interopRequireDefault(_routes);
-
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -25,6 +21,8 @@ var _gmaps2 = _interopRequireDefault(_gmaps);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
+//import router from './routes.js'
+
 app.set("port", 7777);
 
 // [CONFIGURE mongoose]
@@ -34,13 +32,14 @@ db.on('err', console.error);
 db.once('open', function () {
   console.log("Connected to mongoDB server!");
 });
-_mongoose2.default.connect('mongodb://localhost/');
+_mongoose2.default.connect('mongodb://localhost/localDB');
 
-// Define mongoose Model
+//call mongoose Model
 
 
-app.use(_express2.default.static(__dirname + './../client/public'));
+app.use(_express2.default.static(__dirname + './../client/public')); //index.html? 
 app.use('*', function (req, res) {
+  //react-router
   console.log(_path2.default.parse);
   res.sendFile(_path2.default.resolve(__dirname, '../client/public', 'index.html'));
 });
