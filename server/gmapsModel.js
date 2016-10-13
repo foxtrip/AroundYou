@@ -1,28 +1,23 @@
 import mongoose from 'mongoose';
-var Schema = mongoose.Schema;
-
-var pinSchema = new Schema({
-	title: String,
+const pinSchema = mongoose.Schema({//뼈대생성
+	userid: String,
 	lat: Number,
 	lng: Number,
-	username: String,
 	data: { type: Date, default: Date.now  },
 	tag: String, // how does input multiple tag?
-	photo: Buffer
+	image: Buffer
 });
+const Pin = mongoose.model('PinModel',pinSchema)//PinModel:(mongo db collection)생성
 
-// var Pin = mongoose.model('pin', pinSchema);
-
-// var pin = new Pin({
-// 	title: "abc",
+// const demoPin = new Pin({
+// 	userid: "demo",
 // 	lat:37.583248,
 // 	lng:126.985183,
-// 	username: "test1",
-// 	tag: "good, bad, nice",
+// 	tag: "midnight",
 // 	photo:""
-// })
+// });
 
-// pin.save((err, pin)=> {
+// demoPin.save((err, pin)=> {
 // 	if(err) { console.error(err) };
 // 	console.dir(pin);
 // })
@@ -32,4 +27,4 @@ var pinSchema = new Schema({
 // 3. 사용자 입력값 받아오고 >> 사용자가 post 보내는 값 (string)
 // 4. img까지 >> img까지
 
-export default mongoose.model('pin', pinSchema)
+export default mongoose.model('pin', pinSchema);
