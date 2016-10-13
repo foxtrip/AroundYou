@@ -1,11 +1,16 @@
-'use strict';
+"use strict";
 
-// var controllers = require('./controllers');
-var router = require('express').Router();
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+// import controllers from './routes.js'
+// import app from 'express'
 
-// for (var route in controllers) {
-//   router.route("/" + route).get();
-//   router.route("/" + route).post();
-// }
+// const router = app.Router();
 
-module.exports = router;
+var router = function router(req, res) {
+	console.log(req.url);
+	console.log(res.url);
+};
+
+exports.default = router;

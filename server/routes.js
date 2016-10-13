@@ -1,9 +1,14 @@
-// var controllers = require('./controllers');
-var router = require('express').Router();
+// import controllers from './routes.js'
+// import app from 'express'
 
-// for (var route in controllers) {
-//   router.route("/" + route).get();
-//   router.route("/" + route).post();
-// }
+// const router = app.Router();
 
-module.exports = router;
+const router = (req, res)=> {
+	console.log(req.url)
+	if(path === '/upload') {
+		if(method === 'GET')
+	}
+	console.log(res.url)
+}
+
+export default router;
