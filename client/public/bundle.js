@@ -21524,6 +21524,11 @@
 	  }
 
 	  _createClass(App, [{
+	    key: 'mapClick',
+	    value: function mapClick() {
+	      console.log('map Clicked!');
+	    }
+	  }, {
 	    key: 'uploadPhoto',
 	    value: function uploadPhoto() {
 	      console.log('upload!'); //업로드 클릭시  1. 지도가 클릭할수 있게하고 2. 클릭시 좌표저장
