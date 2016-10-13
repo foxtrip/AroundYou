@@ -18,13 +18,11 @@ mongoose.connect('mongodb://localhost/')
 // Define mongoose Model
 import Pin from '../build/gmaps.js'
 
+// Serve static files
 app.use(express.static(__dirname + './../client/public'));
 
 // Server-side routing
-// it takes all url(*) to react-router
-app.use('*', (req, res)=>{
-  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
-});
+app.use('/', router)
 
 // Listen server 0.0.0.0:7777 or localhost:7777
 const server = app.listen(app.get("port"), () => {

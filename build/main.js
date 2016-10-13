@@ -37,13 +37,11 @@ _mongoose2.default.connect('mongodb://localhost/');
 // Define mongoose Model
 
 
+// Serve static files
 app.use(_express2.default.static(__dirname + './../client/public'));
 
 // Server-side routing
-// it takes all url(*) to react-router
-app.use('*', function (req, res) {
-  res.sendFile(_path2.default.resolve(__dirname, '../client/public', 'index.html'));
-});
+app.use('/', _routes2.default);
 
 // Listen server 0.0.0.0:7777 or localhost:7777
 var server = app.listen(app.get("port"), function () {
