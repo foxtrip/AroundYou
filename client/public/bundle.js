@@ -22580,13 +22580,22 @@
 	var Upload = function (_React$Component) {
 	  _inherits(Upload, _React$Component);
 
-	  function Upload() {
+	  function Upload(props) {
 	    _classCallCheck(this, Upload);
 
-	    return _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).call(this, props));
+
+	    _this.state = { value: 'Hello!' };
+	    _this.getText = _this.getText.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Upload, [{
+	    key: 'getText',
+	    value: function getText(event) {
+	      this.setState({ value: event.target.value });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -22594,10 +22603,15 @@
 	        null,
 	        _react2.default.createElement(
 	          'h1',
-	          null,
+	          { style: { color: "green" } },
 	          'Upload'
 	        ),
-	        _react2.default.createElement('i', null)
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement('input', { name: 'photoTags', type: 'text', onChange: this.getText }),
+	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit' })
+	        )
 	      );
 	    }
 	  }]);
@@ -23131,7 +23145,7 @@
 	        null,
 	        _react2.default.createElement(
 	          "h1",
-	          { onClick: this.loginOn },
+	          { style: { color: "white" }, onClick: this.loginOn },
 	          this.state.userId
 	        ),
 	        _react2.default.createElement(
