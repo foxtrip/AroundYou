@@ -4,6 +4,8 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 class Upload extends React.Component{
 	constructor(props) {
 		super(props)
+		this.state = {value: 'Hello!'};
+		this.getText = this.getText.bind(this);
 	}
 
   render(){
