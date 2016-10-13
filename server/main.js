@@ -46,11 +46,6 @@ demoPin.save((err, demoPin)=> { //mongodb에 저장
 	console.log('demoPin Saved!');
 });
 
-
-
-
-
-
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
 });
