@@ -18,6 +18,7 @@ mongoose.connect('mongodb://localhost/')
 // Define mongoose Model
 import Pin from '../build/gmaps.js'
 
+<<<<<<< 13e5e3bf5dd29617c2d05a8cb22619367171efd4
 app.use(express.static(__dirname + './../client/public'));
 
 // Server-side routing
@@ -25,8 +26,21 @@ app.use(express.static(__dirname + './../client/public'));
 app.use('*', (req, res)=>{
   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
 });
+=======
+app.use(express.static(__dirname + './../client/public/index.html'));
+app.use('/', router)
+
+>>>>>>> server
 
 // Listen server 0.0.0.0:7777 or localhost:7777
 const server = app.listen(app.get("port"), () => {
   console.log("Express listening on port", app.get("port"));
 });
+<<<<<<< 13e5e3bf5dd29617c2d05a8cb22619367171efd4
+=======
+
+// import mongoose from 'mongoose';
+// mongoose.connect('mongodb://localhost/myDB');// connect to mongo database named "myDB"
+// import mongo from './routes/posts.js'; //???
+// app.use('/', mongo);
+>>>>>>> server

@@ -6,15 +6,15 @@ class Login extends React.Component{
     this.state = {
       userId : "login",
     };
-    this.loginOn = this.loginOn.bind(this);
+    // this.loginOn = this.loginOn.bind(this);
   };
-  loginOn(e){
-    this.setState({userId:"eunyoung" });//나중에 로그인 완료시 유저아이디를 render하는것으로 바꿀 것. 
-  };  
+  // loginOn(e){
+  //   this.setState({userId:"eunyoung" });//나중에 로그인 완료시 유저아이디를 render하는것으로 바꿀 것. 
+  // };  
   render(){
     return (
       <div>
-        <h1 onClick={this.loginOn} >{this.state.userId}</h1>
+        <a href='/upload' onClick={this.props.onClick} ><h1>{this.state.userId}</h1></a>
         <i> Welcome!</i>
       </div>
     );
