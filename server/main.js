@@ -21,9 +21,6 @@ mongoose.connect('mongodb://localhost/localDB');
 // Serve static files
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 
-// Serve static files
-app.use(express.static(__dirname + './../client/public'));
-
 // Server-side routing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -28978,10 +28978,13 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+<<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
 	var _axios = __webpack_require__(266);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
+=======
+>>>>>>> express get/post -ing
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29020,6 +29023,7 @@
 
 
 	  _createClass(UploadView, [{
+<<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      // this.loadMessage();
@@ -29051,6 +29055,25 @@
 	      // .catch( response => {console.log(response)})
 	    }
 	  }, {
+=======
+	    key: 'getText',
+	    value: function getText(event) {
+	      this.setState({ author: event.target.value });
+	      _jquery2.default.ajax({ //ajax call 바로 해서 받은 파일을 this.mapList로 
+	        type: 'POST',
+	        url: 'mongodb://localhost/choco', //???
+	        dataType: 'jsonp', //??
+	        success: function (data) {
+	          console.log('ajax get success? :', data);
+	          // this.setState({author: event.target.value});
+	        }.bind(this),
+	        error: function error(err) {
+	          console.log('error');
+	        }
+	      });
+	    }
+	  }, {
+>>>>>>> express get/post -ing
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29063,9 +29086,15 @@
 	        ),
 	        _react2.default.createElement(
 	          'form',
+<<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
 	          { action: '', method: 'POST' },
 	          _react2.default.createElement('input', { name: 'photoTags', type: 'text' }),
 	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit', onSubmit: this.loadMessage })
+=======
+	          { action: '', onSubmit: this.getText, method: 'POST' },
+	          _react2.default.createElement('input', { name: 'photoTags', type: 'text' }),
+	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit' })
+>>>>>>> express get/post -ing
 	        )
 	      );
 	    }
@@ -39306,6 +39335,7 @@
 	} );
 
 
+<<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
 /***/ },
 /* 266 */
 /***/ function(module, exports, __webpack_require__) {
@@ -47416,5 +47446,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\0 Downloads\\Codestates immversive\\AroundYou\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "UploadView.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 >>>>>>> reabaseing #3
 
+=======
+>>>>>>> express get/post -ing
 /***/ }
 /******/ ]);
