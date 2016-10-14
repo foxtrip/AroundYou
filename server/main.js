@@ -20,7 +20,6 @@ mongoose.connect('mongodb://localhost/localDB');
 
 app.use(bodyParser.urlencoded({ extended: true }));//?
 app.use(bodyParser.json());//?
-//초기화면
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 app.get('/data', (req,res) => {	//mongoDB pin data 모두 보냄(array)/ok
 	Pin.find((err,pins)=>{
@@ -72,4 +71,3 @@ demoPin2.save((err, demoPin)=> { //mongodb에 저장
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
 });
-
