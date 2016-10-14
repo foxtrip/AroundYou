@@ -12,9 +12,8 @@ db.on('err', console.error);
 db.once('open', ()=>{
 	console.log("Connected to mongoDB server!");
 });
-mongoose.connect('mongodb://localhost/localDB');
 
-<<<<<<< e9a54c33675997d796f4fcd4eda29568cbe34942
+mongoose.connect('mongodb://localhost/localDB');
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 app.use('*', (req, res)=>{  //react-router 사용위한 tool
   console.log(path.parse)
@@ -47,26 +46,6 @@ demoPin.save((err, demoPin)=> { //mongodb에 저장
 	console.log('demoPin Saved!');
 });
 
-
-
-
-
-
 const server = app.listen(app.get("port"), () => {  
-=======
-// Define mongoose Model
-import Pin from '../build/gmaps.js'
-
-app.use(express.static(__dirname + './../client/public'));
-
-// Server-side routing
-// it takes all url(*) to react-router
-app.use('*', (req, res)=>{
-  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
-});
-
-// Listen server 0.0.0.0:7777 or localhost:7777
-const server = app.listen(app.get("port"), () => {
->>>>>>> complete react-router
   console.log("Express listening on port", app.get("port"));
 });
