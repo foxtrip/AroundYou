@@ -5,7 +5,7 @@ import Map from './Map';
 import Upload from './Upload';
 import Photo from './Photo';
 import Footer from './Footer';
-import '!style!css!./../styles/style.css';
+import '!style!css!./../styles/style.css';//css module 찾아보기
 //import MapData from './../../data/MapData';
 import Login from './Login';
 
