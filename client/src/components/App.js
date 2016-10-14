@@ -20,11 +20,7 @@ class App extends React.Component{
   loadDataFromServer(){
     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
       type:'GET',
-<<<<<<< 04451ce1e3c2c227598511fa503b24aae275fd03
-      url:'/data',//'/localhost/localDB', //?????
-=======
-      url:'mongodb://localhost/localDB',
->>>>>>> react-router-s
+      url:'/data',
       dataType:'jsonp',//??
       success:((data)=> {
          this.setState({mapList: data});
