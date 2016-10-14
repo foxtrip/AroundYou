@@ -7,7 +7,6 @@ import Pin from '../build/gmapsModel.js';//call mongoose Model
 import http from 'http';
 
 const app = express();
-import bodyParser from 'body-parser';
 
 app.set("port", 7777);
 
@@ -21,6 +20,7 @@ mongoose.connect('mongodb://localhost/localDB');
 
 app.use(bodyParser.urlencoded({ extended: true }));//?
 app.use(bodyParser.json());//?
+//초기화면
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 app.get('/data', (req,res) => {	//mongoDB pin data 모두 보냄(array)/ok
 	Pin.find((err,pins)=>{

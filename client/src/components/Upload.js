@@ -14,6 +14,7 @@ class Upload extends React.Component{
         	<Link to="upload">Upload</Link>
         </h1>
         {this.props.children}
+
       </div>
     )
   };
