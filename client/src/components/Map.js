@@ -19,7 +19,6 @@ class Map extends React.Component {
   };
 
   mapClick(event, map){
-    // console.log("map clicked", event, map);
     this.props.onClick(event, map);
   };
 

@@ -14,7 +14,7 @@ class Login extends React.Component{
   render(){
     return (
       <div>
-        <h1 onClick={this.loginOn} >{this.state.userId}</h1>
+        <a href = "/login"><h1 >{this.state.userId}</h1></a>
         <i> Welcome!</i>
       </div>
     );
