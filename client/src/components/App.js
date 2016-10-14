@@ -20,7 +20,11 @@ class App extends React.Component{
   loadDataFromServer(){
     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
       type:'GET',
+<<<<<<< 91c1fbf308f4c41e577e1139a900616b6dad8ce6
       url:'/data',
+=======
+      url:'/data',//'/localhost/localDB', //?????
+>>>>>>> ajax success
       dataType:'jsonp',//??
       success:((data)=> {
          this.setState({mapList: data});
