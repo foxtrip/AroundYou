@@ -5,7 +5,7 @@ import Map from './Map';
 import Upload from './Upload';
 import Photo from './Photo';
 import Footer from './Footer';
-import '!style!css!./../styles/style.css';
+import '!style!css!./../styles/style.css';//css module 찾아보기
 //import MapData from './../../data/MapData';
 import Login from './Login';
 
@@ -15,23 +15,23 @@ class App extends React.Component{
     this.state = {
       mapList : [] //default 
     };
+    this.loadDataFromServer=this.loadDataFromServer.bind(this);
   };
   loadDataFromServer(){
-     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
+    $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
       type:'GET',
-      url:'http://localhost:28017/localDB',//?????
+      url:'/data',//'/localhost/localDB', //?????
       dataType:'jsonp',//??
-      success: function(data){
-        console.log('ajax get success? :',data);
-        this.setstate ({ mapList : data });
-      }.bind(this),
-      error: function(err){
-        console.log('error');
+      success:((data)=> {
+         this.setState({mapList: data});
+       }).bind(this),      
+      error: (err) => {
+        console.log('ajax error');
       }
     });
   };
-  componentDidMount() {
-    this.loadDataFromServer.bind(this);
+  componentDidMount() {  
+    this.loadDataFromServer();
   };
   mapClick(){ //아직 안씀
     console.log("mpp clicked");

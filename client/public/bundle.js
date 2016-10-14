@@ -21550,7 +21550,7 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //css module 찾아보기
 	//import MapData from './../../data/MapData';
 
 
@@ -21565,29 +21565,31 @@
 	    _this.state = {
 	      mapList: [] //default 
 	    };
+	    _this.loadDataFromServer = _this.loadDataFromServer.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(App, [{
 	    key: 'loadDataFromServer',
 	    value: function loadDataFromServer() {
+	      var _this2 = this;
+
 	      _jquery2.default.ajax({ //ajax call 바로 해서 받은 파일을 this.mapList로 
 	        type: 'GET',
-	        url: 'http://localhost:28017/localDB', //?????
+	        url: '/data', //'/localhost/localDB', //?????
 	        dataType: 'jsonp', //??
 	        success: function (data) {
-	          console.log('ajax get success? :', data);
-	          this.setstate({ mapList: data });
+	          _this2.setState({ mapList: data });
 	        }.bind(this),
 	        error: function error(err) {
-	          console.log('error');
+	          console.log('ajax error');
 	        }
 	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.loadDataFromServer.bind(this);
+	      this.loadDataFromServer();
 	    }
 	  }, {
 	    key: 'mapClick',
@@ -32042,10 +32044,7 @@
 	  function Map(props) {
 	    _classCallCheck(this, Map);
 
-	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
-
-	    _this.mapClick = _this.mapClick.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 	  }
 
 	  _createClass(Map, [{
@@ -32064,7 +32063,6 @@
 	  }, {
 	    key: 'mapClick',
 	    value: function mapClick(event, map) {
-	      // console.log("map clicked", event, map);
 	      this.props.onClick(event, map);
 	    }
 	  }, {
