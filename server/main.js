@@ -12,8 +12,8 @@ db.on('err', console.error);
 db.once('open', ()=>{
 	console.log("Connected to mongoDB server!");
 });
-mongoose.connect('mongodb://localhost/localDB');
 
+mongoose.connect('mongodb://localhost/localDB');
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 app.use('*', (req, res)=>{  //react-router 사용위한 tool
   console.log(path.parse)
@@ -45,11 +45,6 @@ demoPin.save((err, demoPin)=> { //mongodb에 저장
 	if(err) { console.error(err) };
 	console.log('demoPin Saved!');
 });
-
-
-
-
-
 
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
