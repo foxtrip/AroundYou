@@ -7,6 +7,7 @@ import Pin from '../build/gmapsModel.js';//call mongoose Model
 import http from 'http';
 
 const app = express();
+import bodyParser from 'body-parser';
 
 app.set("port", 7777);
 
@@ -73,3 +74,4 @@ demoPin2.save((err, demoPin)=> { //mongodb에 저장
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
 });
+
