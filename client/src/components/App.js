@@ -1,27 +1,48 @@
 import React from 'react';
+import $ from 'jquery';
 import Header from './Header';
 import Map from './Map';
 import Upload from './Upload';
 import Photo from './Photo';
 import Footer from './Footer';
 import '!style!css!./../styles/style.css';
-import MapData from './../../data/MapData';
+//import MapData from './../../data/MapData';
 import Login from './Login';
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      mapList : window.mapMarker
+      mapList : [] //default 
     };
   };
-  mapClick(){
-    console.log('map Clicked!!');
-  }
-  uploadPhoto(){
-    console.log('upload!');//업로드 클릭시  1. 지도가 클릭할수 있게하고 2. 클릭시 좌표저장
-  }
-  render(){
+  loadDataFromServer(){
+     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
+      type:'GET',
+      url:'mongodb://localhost/localDB',//???
+      dataType:'jsonp',//??
+      success: function(data){
+        console.log('ajax get success? :',data);
+        this.setstate ({ mapList : data });
+      }.bind(this),
+      error: function(err){
+        console.log('error');
+      }
+    });
+  };
+  componentDidMount() {
+    this.loadDataFromServer.bind(this);
+  };
+  mapClick(){ //아직 안씀
+    console.log("mpp clicked");
+  };
+  loginRender(e){ //아직 안씀
+    console.log('click?');
+  };
+  uploadPhoto(){  //아직 안씀
+    console.log('upload!');
+  };
+  render(){ 
     return (
       <div>
         <div id="header" >
@@ -35,7 +56,7 @@ class App extends React.Component{
           <div id="login">
             <div id="outer">
               <div id="inner">
-               <Login />
+               <Login onClick = {this.loginRender}/>
               </div>
             </div>
           </div>
