@@ -8,12 +8,12 @@ class UploadView extends React.Component{
 		this.loadMessage = this.loadMessage.bind(this);
 	}
 
-  componentDidMount(){
-    // this.loadMessage();
+  componentWillMount(){
+    console.log('uploadView props', this.props)
+    console.log('state', this.state)
   }
 
   loadMessage(sth) {
-    console.log('fesd')
     $.ajax({
       url:'/upload',
       dataType:'json',
@@ -35,7 +35,14 @@ class UploadView extends React.Component{
       <div>
         <h1 style={{color: "green"}}>UploadView</h1>
         <form action="" method="POST">
-          <input name="photoTags" type="text" />
+          <h4 style={{color: "white"}}> lat </h4>
+          <input name="lat" type="number" />
+          <h4 style={{color: "white"}}> lng </h4>
+          <input name="lng" type="number" />
+          <h4 style={{color: "white"}}> userid </h4>
+          <input name="userid" type="text" />
+          <h4 style={{color: "white"}}> tag </h4>
+          <input name="tag" type="text" />
           <input name="tagsSubmit" type="submit" onSubmit={this.loadMessage} />
         </form>
       </div>
@@ -45,3 +52,4 @@ class UploadView extends React.Component{
 };
 
 export default UploadView;
+
