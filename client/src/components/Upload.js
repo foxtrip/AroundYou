@@ -17,7 +17,6 @@ class Upload extends React.Component{
       </div>
     )
   };
-
 };
 
 export default Upload;
