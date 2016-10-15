@@ -3,21 +3,21 @@ import mongoose from 'mongoose';
 import routes from './routes.js';
 import path from 'path';
 import bodyParser from 'body-parser';
+import Pin from '../build/gmapsModel.js';//call mongoose Model
+import http from 'http';
 
 const app = express();
+
 app.set("port", 7777);
 
-// [CONFIGURE mongoose]
-// Connect to mongoDB server
-const db = mongoose.connection;
+const db = mongoose.connection;//Connect to mongoDB server
 db.on('err', console.error);
 db.once('open', ()=>{
 	console.log("Connected to mongoDB server!");
 });
-mongoose.connect('mongodb://localhost/')
 
-// Define mongoose Model
-import Pin from '../build/gmaps.js'
+mongoose.connect('mongodb://localhost/localDB');
+app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 
 // Serve static files
 app.use(express.static(__dirname + './../client/public'));
@@ -28,8 +28,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes)
 
 // app.use(bodyParser.urlencoded({ extended: true }));
+const demoPin = new Pin({ //demo 객체 생성
+	  userid: "demo",
+	  lat:37.583248,
+	  lng:126.985183,
+	  tag: "midnight",
+	  image:""
+});
 
-// Listen server 0.0.0.0:7777 or localhost:7777
-const server = app.listen(app.get("port"), () => {
+demoPin.save((err, demoPin)=> { //mongodb에 저장
+	if(err) { console.error(err) };
+	console.log('demoPin Saved!');
+});
+
+const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
 });
