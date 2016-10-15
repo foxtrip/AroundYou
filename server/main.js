@@ -31,8 +31,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes)
 
-
-
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));
 });
