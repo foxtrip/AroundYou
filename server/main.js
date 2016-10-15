@@ -44,11 +44,15 @@ app.use('*', (req, res)=>{  //react-router 사용위한 tool
 //     tag:req.body.tag,
 //     image:req.body.image
 //   });
+<<<<<<< 73a92a2c4479620cea1813a3f9df3e4e1f25dbee
 <<<<<<< 5715ac5d064adbed8891f9cb29301df6703fee9c
 //   pin.save(function(err,pin){  //pin객체 저장
 =======
 //   pin.save(function(err,data){  //pin객체 저장
 >>>>>>> ajax11
+=======
+//   pin.save(function(err,pin){  //pin객체 저장
+>>>>>>> google login
 //     if(err) { console.error(err) };
 //     res.send('success');
 //   });
