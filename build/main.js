@@ -16,6 +16,10 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
 var _gmaps = require('../build/gmaps.js');
 
 var _gmaps2 = _interopRequireDefault(_gmaps);
@@ -41,7 +45,13 @@ _mongoose2.default.connect('mongodb://localhost/');
 app.use(_express2.default.static(__dirname + './../client/public'));
 
 // Server-side routing
+app.use(_bodyParser2.default.json());
+app.use(_bodyParser2.default.urlencoded({
+  extended: true
+}));
 app.use('/', _routes2.default);
+
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 // Listen server 0.0.0.0:7777 or localhost:7777
 var server = app.listen(app.get("port"), function () {

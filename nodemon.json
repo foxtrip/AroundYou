@@ -1,0 +1,8 @@
+{
+  "watch": [
+    "server",
+    "client"
+  ],
+  "exec": "babel-node server/main.js"
+}
+
