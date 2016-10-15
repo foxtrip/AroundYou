@@ -14,3 +14,4 @@ ReactDOM.render((<Router history={browserHistory}>
 					</Route>
 				</Router>
 	), rootElement);
+//<Route path="login" component={LoginPage}/> 
