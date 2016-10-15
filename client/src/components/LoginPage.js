@@ -1,19 +1,17 @@
 import React from 'react';
 
-class Photo extends React.Component{
+class LoginPage extends React.Component{
   constructor(props){
     super(props);
   };
-
   render(){
     return (
       <div>
-        <h1></h1>
-        <i></i>
+        <h1>LoginPage</h1>
+        <i> Welcome!</i>
       </div>
     );
   };
-
 };
 
-export default Photo;
+export default LoginPage;
