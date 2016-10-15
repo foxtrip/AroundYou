@@ -7,7 +7,6 @@ import Pin from '../build/gmapsModel.js';//call mongoose Model
 import http from 'http';
 
 const app = express();
-import bodyParser from 'body-parser';
 
 app.set("port", 7777);
 

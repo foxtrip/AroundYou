@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import axios from 'axios';
 
 class UploadView extends React.Component{
 	constructor(props) {
