@@ -27,17 +27,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes)
 
 // Mongoose DB Schema
-const demoPin = new Pin({ //demo 객체 생성
-	  userid: "demo",
-	  lat:37.583248,
-	  lng:126.985183,
-	  tag: "midnight",
-	  image:""
+// const demoPin = new Pin({ //demo 객체 생성
+// 	  userid: "demo",
+// 	  lat:37.583248,
+// 	  lng:126.985183,
+// 	  tag: "midnight",
+// 	  image:""
+// })
 
-demoPin.save((err, demoPin)=> { //mongodb에 저장
-	if(err) { console.error(err) };
-	console.log('demoPin Saved!');
-});
+// demoPin.save((err, demoPin)=> { //mongodb에 저장
+// 	if(err) { console.error(err) };
+// 	console.log('demoPin Saved!');
+// });
 
 const server = app.listen(app.get("port"), () => {  
   console.log("Express listening on port", app.get("port"));

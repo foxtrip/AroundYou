@@ -7,6 +7,7 @@ import Footer from './Footer';
 import '!style!css!./../styles/style.css';
 import MapData from './../../data/MapData';
 import Login from './Login';
+import UploadView from './UploadView';
 
 class App extends React.Component{
   constructor(props){
