@@ -38,7 +38,7 @@ app.use('*', (req, res)=>{  //react-router 사용위한 tool
 //     tag:req.body.tag,
 //     image:req.body.image
 //   });
-//   pin.save(function(err,data){  //pin객체 저장
+//   pin.save(function(err,pin){  //pin객체 저장
 //     if(err) { console.error(err) };
 //     res.send('success');
 //   });
