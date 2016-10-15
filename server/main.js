@@ -33,7 +33,6 @@ const demoPin = new Pin({ //demo 객체 생성
 	  lng:126.985183,
 	  tag: "midnight",
 	  image:""
-});
 
 demoPin.save((err, demoPin)=> { //mongodb에 저장
 	if(err) { console.error(err) };

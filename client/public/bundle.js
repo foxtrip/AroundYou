@@ -28978,13 +28978,19 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
+=======
+>>>>>>> receive post message
 	var _axios = __webpack_require__(266);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 >>>>>>> express get/post -ing
+=======
+>>>>>>> receive post message
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29023,7 +29029,10 @@
 
 
 	  _createClass(UploadView, [{
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
+=======
+>>>>>>> receive post message
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      // this.loadMessage();
@@ -29035,6 +29044,7 @@
 	      _jquery2.default.ajax({
 	        url: '/upload',
 	        dataType: 'json',
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 	        type: 'POST',
 	        data: sth,
 	        contentType: 'application/json',
@@ -29060,17 +29070,26 @@
 	    value: function getText(event) {
 	      this.setState({ author: event.target.value });
 	      _jquery2.default.ajax({ //ajax call 바로 해서 받은 파일을 this.mapList로 
+=======
+>>>>>>> receive post message
 	        type: 'POST',
-	        url: 'mongodb://localhost/choco', //???
-	        dataType: 'jsonp', //??
+	        data: sth,
+	        contentType: 'application/json',
 	        success: function (data) {
-	          console.log('ajax get success? :', data);
-	          // this.setState({author: event.target.value});
+	          console.log('sth', sth);
+	          console.log('data', data);
 	        }.bind(this),
-	        error: function error(err) {
-	          console.log('error');
-	        }
+	        error: function (xhr, status, err) {
+	          console.error(status, err.toString());
+	        }.bind(this)
 	      });
+
+	      // axios.post('/upload', {
+	      //   user:'joo',
+	      //   message:'hi'
+	      // })
+	      // .then( response => {console.log(response)})
+	      // .catch( response => {console.log(response)})
 	    }
 	  }, {
 >>>>>>> express get/post -ing
@@ -29086,6 +29105,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'form',
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
 	          { action: '', method: 'POST' },
 	          _react2.default.createElement('input', { name: 'photoTags', type: 'text' }),
@@ -29095,6 +29115,11 @@
 	          _react2.default.createElement('input', { name: 'photoTags', type: 'text' }),
 	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit' })
 >>>>>>> express get/post -ing
+=======
+	          { action: '', method: 'POST' },
+	          _react2.default.createElement('input', { name: 'photoTags', type: 'text' }),
+	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit', onSubmit: this.loadMessage })
+>>>>>>> receive post message
 	        )
 	      );
 	    }
@@ -39335,7 +39360,10 @@
 	} );
 
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< ff659ff68545198cf503abb360d465797a11dcfd
+=======
+>>>>>>> receive post message
 /***/ },
 /* 266 */
 /***/ function(module, exports, __webpack_require__) {
@@ -40258,6 +40286,7 @@
 
 /***/ },
 /* 278 */
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\0 Downloads\\Codestates immversive\\AroundYou\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\0 Downloads\\Codestates immversive\\AroundYou\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
@@ -45919,11 +45948,16 @@
 <<<<<<< 345097d2d7a2c529eee677a697cfe06310d41b87
 /* 258 */
 >>>>>>> react inupt
+=======
+>>>>>>> receive post message
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< 0b5a9331ac0b77a9eb743684055a20431fac2095
+=======
+>>>>>>> receive post message
 	var utils = __webpack_require__(268);
 
 	/**
@@ -45963,9 +45997,12 @@
 
 /***/ },
 /* 279 */
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 /* 250 */
 >>>>>>> reabaseing #3
+=======
+>>>>>>> receive post message
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46066,6 +46103,7 @@
 	    //   check if d has no fractional digits
 	    str.charAt(idx | 0) || (map = '=', idx % 1);
 	    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
 	  ) {
 	    charCode = str.charCodeAt(idx += 3 / 4);
@@ -46172,11 +46210,32 @@
 <<<<<<< 345097d2d7a2c529eee677a697cfe06310d41b87
 /* 260 */
 >>>>>>> react inupt
+=======
+	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+	  ) {
+	    charCode = str.charCodeAt(idx += 3 / 4);
+	    if (charCode > 0xFF) {
+	      throw new E();
+	    }
+	    block = block << 8 | charCode;
+	  }
+	  return output;
+	}
+
+	module.exports = btoa;
+
+
+/***/ },
+/* 281 */
+>>>>>>> receive post message
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 <<<<<<< 0b5a9331ac0b77a9eb743684055a20431fac2095
+=======
+>>>>>>> receive post message
 	var utils = __webpack_require__(268);
 
 	module.exports = (
@@ -46375,9 +46434,12 @@
 
 /***/ },
 /* 284 */
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 /* 252 */
 >>>>>>> reabaseing #3
+=======
+>>>>>>> receive post message
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46478,6 +46540,7 @@
 
 /***/ },
 /* 289 */
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 	exports.__esModule = true;
 
@@ -47279,6 +47342,12 @@
 
 <<<<<<< 345097d2d7a2c529eee677a697cfe06310d41b87
 <<<<<<< 0b5a9331ac0b77a9eb743684055a20431fac2095
+=======
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+>>>>>>> receive post message
 	var Cancel = __webpack_require__(288);
 
 	/**
@@ -47368,6 +47437,7 @@
 	  };
 	};
 
+<<<<<<< 5baa31fa23b9376d34e0cbb28041f544ddf78dba
 =======
 	exports.__esModule = true;
 =======
@@ -47448,5 +47518,8 @@
 
 =======
 >>>>>>> express get/post -ing
+=======
+
+>>>>>>> receive post message
 /***/ }
 /******/ ]);
