@@ -1,9 +1,15 @@
-// var controllers = require('./controllers');
-var router = require('express').Router();
+import bodyParser from 'body-parser';
 
-// for (var route in controllers) {
-//   router.route("/" + route).get();
-//   router.route("/" + route).post();
-// }
+const router = (req, res)=> {
+	if(req.url === '/upload') {
+		if(req.method === 'POST') {
+			console.log('req', req.body)
+			res.end()
+		// } else if (req.method === 'GET') {
+		// 	console.log('Respose messages!')
+			// res.end('res.get')
+		}
+	}
+}
 
-module.exports = router;
+export default router;

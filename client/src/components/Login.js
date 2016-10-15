@@ -14,7 +14,7 @@ class Login extends React.Component{
   render(){
     return (
       <div>
-        <h1 onClick={this.loginOn} >{this.state.userId}</h1>
+        <h1 style={{color: "white"}} onClick={this.loginOn} >{this.state.userId}</h1>
         <i> Welcome!</i>
       </div>
     );
