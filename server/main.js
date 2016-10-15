@@ -10,13 +10,15 @@ const app = express();
 
 app.set("port", 7777);
 
+// Mongoose connecting
 const db = mongoose.connection;//Connect to mongoDB server
 db.on('err', console.error);
 db.once('open', ()=>{
 	console.log("Connected to mongoDB server!");
 });
-
 mongoose.connect('mongodb://localhost/localDB');
+
+// Serve static files
 app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
 
 // Serve static files
@@ -27,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes)
 
-// app.use(bodyParser.urlencoded({ extended: true }));
+// Mongoose DB Schema
 const demoPin = new Pin({ //demo 객체 생성
 	  userid: "demo",
 	  lat:37.583248,

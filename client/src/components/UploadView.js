@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import axios from 'axios';
 
 class UploadView extends React.Component{
 	constructor(props) {
@@ -8,21 +7,7 @@ class UploadView extends React.Component{
 		this.state = {author: 'jsu'};
 		this.loadMessage = this.loadMessage.bind(this);
 	}
-	// getText(event){
-	// 	this.setState({author: event.target.value});
- //    $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
- //      type:'GET',
- //      url:'mongodb://localhost/choco',//???
- //      dataType:'jsonp',//??
- //      success: function(data){
- //        console.log('ajax get success? :',data);
- //        // this.setState({author: event.target.value});
- //      }.bind(this),
- //      error: function(err){
- //        console.log('error');
- //      }
- //    });
-	// }
+
   componentDidMount(){
     // this.loadMessage();
   }
@@ -43,13 +28,6 @@ class UploadView extends React.Component{
         console.error(status, err.toString());
       }.bind(this)
     });
-
-    // axios.post('/upload', {
-    //   user:'joo',
-    //   message:'hi'
-    // })
-    // .then( response => {console.log(response)})
-    // .catch( response => {console.log(response)})
   }
 
   render(){
