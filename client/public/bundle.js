@@ -38555,16 +38555,6 @@
 
 	  _createClass(UploadView, [{
 	    key: 'sendDataToServer',
-
-	    // componentwillreceiveprops(){ // test 용 console.log // props가 변화될 때마다 실행 
-	    //   console.log('uploadView props', this.props) // Map.js에서 정상적으로 newLng와 newLat가 넘어옴
-	    //   console.log('state', this.state)
-	    // }
-	    // componentDidMount(){ // test용 console.log
-	    //   this.setState({hereLng: this.props.newLng, hereLat: this.props.newLat}); 
-	    //   console.log(this.state.newLng, this.state.newLat); // Map.js에서 받은 newLng와 newLat가 출력되지 않음. componentwillreceiveprops와 왜 다르게 출력되는지 모르겠음
-	    // }
-	    // 아래의 form 값을 전송하기 위한 test function. // Map.js에서 받은 데이터로 setState가 되면 form에 입력한 부분과 함께 routes로 data를 전송하려고 함.
 	    value: function sendDataToServer() {
 	      var data = {
 	        userid: this.state.userid,

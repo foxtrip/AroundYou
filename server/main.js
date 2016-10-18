@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost/localDB');
 
 //server 에 정적파일 띄우기
 app.use(express.static(__dirname + './../client/public')); 
-app.get('/upload', (req, res)=>{  //react-router 사용위한 tool //'*' 썻더니 ajax err 나서 일부만 쓰는걸로 바꿈. 
+app.get('/upload', (req, res)=>{  //react-router 사용위한 tool //app.use('*') 썻더니 ajax err 나서 일부만 쓰는걸로 바꿈. 
   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
 });
 
