@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import { Link } from 'react-router';
 import Header from './Header';
 import Map from './Map';
 import Upload from './Upload';
@@ -9,6 +10,7 @@ import '!style!css!./../styles/style.css';//css module 찾아보기
 //import MapData from './../../data/MapData';
 import Login from './Login';
 import UploadView from './UploadView';
+
 
 class App extends React.Component{
   constructor(props){
@@ -40,9 +42,6 @@ class App extends React.Component{
   loginRender(e){ //아직 안씀
     console.log('click?');
   };
-  uploadPhoto(){  //아직 안씀
-    console.log('upload!');
-  };
   render(){ 
     return (
       <div>
@@ -72,15 +71,15 @@ class App extends React.Component{
         <div id="photos">
           <div id="upload">
             <div id="outer">
-              <div id="inner" onClick = {this.uploadPhoto}>
-                  <Upload />
+              <div id="inner">
+                <Upload />
               </div>
             </div>
           </div>
           <div id="photo">
             <div id="outer">
               <div id="inner">
-                <Photo photoSource={this.state.mapList} />
+                {this.props.children}
               </div>
             </div>
           </div>

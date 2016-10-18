@@ -1,30 +1,39 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes.js';
-import path from 'path';
 import bodyParser from 'body-parser';
 import Pin from '../build/gmapsModel.js';//call mongoose Model
-import http from 'http';
-
+// import path from 'path';
+// import http from 'http';
 const app = express();
 
 app.set("port", 7777);
 
 // Mongoose connecting
-const db = mongoose.connection;//Connect to mongoDB server
+const db = mongoose.connection;
 db.on('err', console.error);
 db.once('open', ()=>{
 	console.log("Connected to mongoDB server!");
 });
 mongoose.connect('mongodb://localhost/localDB');
+//demoPin 생성, 저장
+// const demoPin = new Pin({ // demoPin 생성.
+// 	userid: "demo",
+// 	lat: "37.582547",
+// 	lng: "126.983531",
+// 	tag: "북촌 11길",
+// 	image:""
+// });
+// demoPin.save((err, pin)=> { //demoPin  저장. 
+// 	if(err) { console.error(err) };
+// 	console.log('pin Saved!');
+// });
 
-app.use(express.static(__dirname + './../client/public'));  //server 에 정적파일 띄우기
-app.get('/data', (req,res) => {	//mongoDB pin data 모두 보냄(array)/ok
-	Pin.find((err,pins)=>{
-		if(err){console.log('err')}
-		res.jsonp(pins);
-	});
-});
+//server 에 정적파일 띄우기
+app.use(express.static(__dirname + './../client/public')); 
+// app.use('*', (req, res)=>{  //react-router 사용위한 tool
+//   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
+// });
 
 // Server-side routing
 app.use(bodyParser.json());
