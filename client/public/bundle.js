@@ -21572,10 +21572,12 @@
 
 	    _this.state = {
 	      mapList: [], //default 
-	      newmarker: false
+	      newmarker: false, //upload click 시 marker 생성시킴 
+	      pinLocation: {} //uploadView에서 post 로 db에 저장됨. 
 	    };
 	    _this.loadDataFromServer = _this.loadDataFromServer.bind(_this);
 	    _this.uploadClick = _this.uploadClick.bind(_this);
+	    _this.pinDragged = _this.pinDragged.bind(_this);
 	    return _this;
 	  }
 
@@ -21608,6 +21610,12 @@
 	      this.setState({ newmarker: true });
 	    }
 	  }, {
+	    key: 'pinDragged',
+	    value: function pinDragged(val) {
+	      this.setState({ pinLocation: val });
+	      console.log('val', val); //ok
+	    }
+	  }, {
 	    key: 'mapClick',
 	    value: function mapClick() {
 	      //아직 안씀
@@ -21622,6 +21630,8 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this3 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -21664,7 +21674,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'inner' },
-	              _react2.default.createElement(_Map2.default, { marker: this.state.mapList, newmarker: this.state.newmarker, onClick: this.mapClick })
+	              _react2.default.createElement(_Map2.default, { marker: this.state.mapList, newmarker: this.state.newmarker, onClick: this.mapClick, onDragged: this.pinDragged })
 	            )
 	          )
 	        ),
@@ -21693,7 +21703,9 @@
 	              _react2.default.createElement(
 	                'div',
 	                { id: 'inner' },
-	                this.props.children
+	                _react2.default.Children.map(this.props.children, function (child) {
+	                  return _react2.default.cloneElement(child, { sorceValue: _this3.state.pinLocation });
+	                })
 	              )
 	            )
 	          )
@@ -37704,6 +37716,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	//3. 나머지칸 입력한 뒤 엔터 누르면 db 에 입력값 저장후 원래 photo.js 뜬다. 
 	var Map = function (_React$Component) {
 	  _inherits(Map, _React$Component);
 
@@ -37712,7 +37725,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
-	    _this.state = { newLng: "", newLat: "" }; // 움직인 pin의 위도, 경도 값을 죄다 upload view로 넘긴다.//어떻게??? 
+	    _this.state = { newLng: "", newLat: "" };
 	    _this.mapClick = _this.mapClick.bind(_this); // 1.pin 클릭하면 2.해당 위 경도가 일지하는 사진만 mapping 해서 보여주도록 구현해야  
 	    _this.onDragEnd = _this.onDragEnd.bind(_this);
 	    return _this;
@@ -37728,9 +37741,12 @@
 	  }, {
 	    key: 'onDragEnd',
 	    value: function onDragEnd(e) {
-	      //  위경도 콘솔창에 찍어줌.// state 값 변경시킴. 
-	      console.log('x: ', e.latLng.lng(), ' y: ', e.latLng.lat()); // 움직인 pin의 위도, 경도 값을 upload view로 넘겨야 한다. 
-	      this.setState({ newLng: e.latLng.lng(), newLat: e.latLng.lat() });
+	      //newMarker 움직인 뒤 위경도 값 추출.
+	      var x = e.latLng.lat();
+	      var y = e.latLng.lng();
+	      var val = { lat: x, lng: y };
+	      console.log('x: ', x, ' y: ', y);
+	      this.props.onDragged(val);
 	    }
 	  }, {
 	    key: 'mapClick',
@@ -37742,9 +37758,8 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      var newMarker = undefined;
+	      var newMarker = undefined; // upload click시 map에 유동적인 marker 생성.
 	      if (this.props.newmarker) {
-	        console.log("success?"); //ok!
 	        var newMarker = _react2.default.createElement(_reactGmaps.Marker, { lat: 37.581770, lng: 126.985966, draggable: true, onDragEnd: this.onDragEnd });
 	      }
 	      return _react2.default.createElement(
@@ -38532,63 +38547,63 @@
 
 	    var _this = _possibleConstructorReturn(this, (UploadView.__proto__ || Object.getPrototypeOf(UploadView)).call(this, props));
 
-	    _this.state = { author: 'jsu' };
+	    _this.state = { userid: 'ley', lat: 0, lng: 0, tag: "" };
 	    _this.loadMessage = _this.loadMessage.bind(_this);
+	    _this.sendDataToServer = _this.sendDataToServer.bind(_this);
 	    return _this;
 	  }
-	  // componentwillreceiveprops(){ // test 용 console.log // props가 변화될 때마다 실행 
-	  //   console.log('uploadView props', this.props) // Map.js에서 정상적으로 newLng와 newLat가 넘어옴
-	  //   console.log('state', this.state)
-	  // }
-	  // componentDidMount(){ // test용 console.log
-	  //   this.setState({hereLng: this.props.newLng, hereLat: this.props.newLat}); 
-	  //   console.log(this.state.newLng, this.state.newLat); // Map.js에서 받은 newLng와 newLat가 출력되지 않음. componentwillreceiveprops와 왜 다르게 출력되는지 모르겠음
-	  // }
-	  // 아래의 form 값을 전송하기 위한 test function. // Map.js에서 받은 데이터로 setState가 되면 form에 입력한 부분과 함께 routes로 data를 전송하려고 함.
-
 
 	  _createClass(UploadView, [{
-	    key: 'loadMessage',
-	    value: function loadMessage(sth) {
-	      // 현재 form에 입력한 data는 routes에서 req.body.name으로 받을 수 있으나, this.state 전송에 실패.
-	      var herex = this.props.newLng;
+	    key: 'sendDataToServer',
+
+	    // componentwillreceiveprops(){ // test 용 console.log // props가 변화될 때마다 실행 
+	    //   console.log('uploadView props', this.props) // Map.js에서 정상적으로 newLng와 newLat가 넘어옴
+	    //   console.log('state', this.state)
+	    // }
+	    // componentDidMount(){ // test용 console.log
+	    //   this.setState({hereLng: this.props.newLng, hereLat: this.props.newLat}); 
+	    //   console.log(this.state.newLng, this.state.newLat); // Map.js에서 받은 newLng와 newLat가 출력되지 않음. componentwillreceiveprops와 왜 다르게 출력되는지 모르겠음
+	    // }
+	    // 아래의 form 값을 전송하기 위한 test function. // Map.js에서 받은 데이터로 setState가 되면 form에 입력한 부분과 함께 routes로 data를 전송하려고 함.
+	    value: function sendDataToServer() {
+	      var data = {
+	        userid: this.state.userid,
+	        lat: this.state.lat,
+	        lng: this.state.lng,
+	        tag: this.state.tag,
+	        image: ""
+	      };
 	      _jquery2.default.ajax({
-	        url: '/upload',
-	        dataType: 'json',
 	        type: 'POST',
-	        data: herex,
-	        contentType: 'application/json',
+	        url: '/upload',
+	        dataType: 'jsonp',
+	        data: data,
 	        success: function (data) {
-	          console.log('sth', sth);
-	          console.log('data', data);
+	          console.log('ajax post success');
 	        }.bind(this),
-	        error: function (xhr, status, err) {
-	          console.error(status, err.toString());
+	        error: function (err) {
+	          console.log('ajax post err!!!!!!!!!!!!!!!!!!');
 	        }.bind(this)
 	      });
+	    }
+	  }, {
+	    key: 'loadMessage',
+	    value: function loadMessage(e) {
+	      this.setState({ lat: this.props.sorceValue.lat, lng: this.props.sorceValue.lng, tag: e.target.value });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          { style: { color: "green" } },
-	          'UploadView'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          { action: '', method: 'POST' },
-	          _react2.default.createElement(
-	            'h4',
-	            { style: { color: "white" } },
-	            ' tag '
-	          ),
-	          _react2.default.createElement('input', { name: 'tag', type: 'text' }),
-	          _react2.default.createElement('input', { name: 'tagsSubmit', type: 'submit', onSubmit: this.loadMessage })
-	        )
+	        'form',
+	        { className: 'commentForm' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          placeholder: 'Say something...',
+	          value: this.state.tag,
+	          onChange: this.loadMessage
+	        }),
+	        _react2.default.createElement('input', { type: 'submit', value: 'Post', onClick: this.sendDataToServer })
 	      );
 	    }
 	  }]);
@@ -38651,9 +38666,7 @@
 	      this.props.onClick(e);
 	    }
 	    //1. Upload 부분 클릭하면 photo.js에서 UploadView.js 로 내용물 변경. //ok 
-	    //1-2. 포인터 추가.
-	    //2. 포인터를 적당한 위치에 놓으면 UploadView.js 칸에 입력값 뜨고,  
-	    //3. 나머지칸 입력한 뒤 엔터 누르면 db 에 입력값 저장후 원래 photo.js 뜬다. 
+	    //1-2. 포인터 추가.  //ok
 
 	  }, {
 	    key: 'render',

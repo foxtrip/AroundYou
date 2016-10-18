@@ -11,7 +11,6 @@ router.get('/data', (req,res) => {	//data 요청시 mongoDB pin data 모두 보�
 });
 
 router.post('/upload', (req,res) => { //upload 요청시 DB에 저장.//아직 안됨.
-	console.log(req);
 	const pin = new Pin({ // UploadView의 form에서 받은 data로 새로운 pin 생성. form에서는 자료를 받을 수 있으나 state를 전송받지 못함.
 		userid: req.body.userid,
 		lat: req.body.lat,
@@ -23,7 +22,7 @@ router.post('/upload', (req,res) => { //upload 요청시 DB에 저장.//아직 �
 		if(err) { console.error(err) };
 		console.log('pin Saved!');
 	});
-	res.json('pin saved!!');
+	res.json(pin);
 });
 
 export default router;

@@ -6,7 +6,7 @@ class Map extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state ={newLng:"", newLat:""};  // 움직인 pin의 위도, 경도 값을 죄다 upload view로 넘긴다.//어떻게??? 
+    this.state ={newLng:"", newLat:""};
     this.mapClick = this.mapClick.bind(this);// 1.pin 클릭하면 2.해당 위 경도가 일지하는 사진만 mapping 해서 보여주도록 구현해야  
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -17,9 +17,12 @@ class Map extends React.Component {
     });
   };
  
-  onDragEnd(e) {  //  위경도 콘솔창에 찍어줌.// state 값 변경시킴. 
-    console.log('x: ', e.latLng.lng(),' y: ', e.latLng.lat()); // 움직인 pin의 위도, 경도 값을 upload view로 넘겨야 한다. 
-    this.setState({newLng: e.latLng.lng(), newLat: e.latLng.lat()}); 
+  onDragEnd(e) { //newMarker 움직인 뒤 위경도 값 추출.
+    const x = e.latLng.lat();
+    const y = e.latLng.lng();
+    const val = {lat:x, lng:y};
+    console.log('x: ', x,' y: ', y);  
+    this.props.onDragged(val);
   };
 
   mapClick(event, map){

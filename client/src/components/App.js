@@ -17,10 +17,12 @@ class App extends React.Component{
     super(props);
     this.state = {
       mapList : [], //default 
-      newmarker : false
+      newmarker : false,  //upload click 시 marker 생성시킴 
+      pinLocation :{} //uploadView에서 post 로 db에 저장됨. 
     };
     this.loadDataFromServer=this.loadDataFromServer.bind(this);
     this.uploadClick = this.uploadClick.bind(this);
+    this.pinDragged = this.pinDragged.bind(this);
   };
   loadDataFromServer(){
     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
@@ -41,6 +43,10 @@ class App extends React.Component{
   uploadClick(){ //map에 marker 생성. 
     this.setState({newmarker:true});
   };
+  pinDragged(val){
+    this.setState({pinLocation:val});
+    console.log('val',val);//ok
+  }
   mapClick(){ //아직 안씀
     console.log("mpp clicked");
   };
@@ -69,7 +75,7 @@ class App extends React.Component{
         <div id="map">
           <div id="outer">
             <div id="inner">
-              <Map marker={this.state.mapList} newmarker= {this.state.newmarker} onClick={this.mapClick}/>
+              <Map marker={this.state.mapList} newmarker= {this.state.newmarker} onClick= {this.mapClick} onDragged= {this.pinDragged}/>
             </div>
           </div>
         </div >
@@ -84,7 +90,7 @@ class App extends React.Component{
           <div id="photo">
             <div id="outer">
               <div id="inner">
-                {this.props.children}
+                { React.Children.map(this.props.children,(child)=> React.cloneElement(child, {sorceValue : this.state.pinLocation})) }
               </div>
             </div>
           </div>
