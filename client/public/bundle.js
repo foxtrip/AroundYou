@@ -79,18 +79,18 @@
 	var rootElement = document.getElementById('wrap');
 
 	_reactDom2.default.render(_react2.default.createElement(
-		_reactRouter.Router,
-		{ history: _reactRouter.browserHistory },
-		_react2.default.createElement(
-			_reactRouter.Route,
-			{ component: _Layout2.default },
-			_react2.default.createElement(
-				_reactRouter.Route,
-				{ path: '/', component: _App2.default },
-				_react2.default.createElement(_reactRouter.Route, { path: 'photo', component: _Photo2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: 'upload', component: _UploadView2.default })
-			)
-		)
+						_reactRouter.Router,
+						{ history: _reactRouter.browserHistory },
+						_react2.default.createElement(
+											_reactRouter.Route,
+											{ component: _Layout2.default },
+											_react2.default.createElement(
+																_reactRouter.Route,
+																{ path: '/', component: _App2.default },
+																_react2.default.createElement(_reactRouter.Route, { path: 'photo', component: _Photo2.default }),
+																_react2.default.createElement(_reactRouter.Route, { path: 'upload', component: _UploadView2.default })
+											)
+						)
 	), rootElement);
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/ieun-yeong/AroundYou/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -21571,9 +21571,11 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	    _this.state = {
-	      mapList: [] //default 
+	      mapList: [], //default 
+	      newmarker: false
 	    };
 	    _this.loadDataFromServer = _this.loadDataFromServer.bind(_this);
+	    _this.uploadClick = _this.uploadClick.bind(_this);
 	    return _this;
 	  }
 
@@ -21598,6 +21600,12 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.loadDataFromServer();
+	    }
+	  }, {
+	    key: 'uploadClick',
+	    value: function uploadClick() {
+	      //map에 marker 생성. 
+	      this.setState({ newmarker: true });
 	    }
 	  }, {
 	    key: 'mapClick',
@@ -21656,7 +21664,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'inner' },
-	              _react2.default.createElement(_Map2.default, { marker: this.state.mapList, onClick: this.mapClick })
+	              _react2.default.createElement(_Map2.default, { marker: this.state.mapList, newmarker: this.state.newmarker, onClick: this.mapClick })
 	            )
 	          )
 	        ),
@@ -21672,7 +21680,7 @@
 	              _react2.default.createElement(
 	                'div',
 	                { id: 'inner' },
-	                _react2.default.createElement(_Upload2.default, null)
+	                _react2.default.createElement(_Upload2.default, { onClick: this.uploadClick })
 	              )
 	            )
 	          ),
@@ -37704,7 +37712,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
-	    _this.state = { newLng: "20", newLat: "20" }; // 움직인 pin의 위도, 경도 값을 죄다 upload view로 넘긴다.//어떻게??? 
+	    _this.state = { newLng: "", newLat: "" }; // 움직인 pin의 위도, 경도 값을 죄다 upload view로 넘긴다.//어떻게??? 
 	    _this.mapClick = _this.mapClick.bind(_this); // 1.pin 클릭하면 2.해당 위 경도가 일지하는 사진만 mapping 해서 보여주도록 구현해야  
 	    _this.onDragEnd = _this.onDragEnd.bind(_this);
 	    return _this;
@@ -37734,6 +37742,11 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      var newMarker = undefined;
+	      if (this.props.newmarker) {
+	        console.log("success?"); //ok!
+	        var newMarker = _react2.default.createElement(_reactGmaps.Marker, { lat: 37.581770, lng: 126.985966, draggable: true, onDragEnd: this.onDragEnd });
+	      }
 	      return _react2.default.createElement(
 	        _reactGmaps.Gmaps,
 	        {
@@ -37745,7 +37758,7 @@
 	          loadingMessage: 'Loading Araound Maps',
 	          params: { v: '3.exp', key: 'AIzaSyApEhbvTjERHndLY1yOdaAES-Fr8-yPrCg' },
 	          onMapCreated: this.onMapCreated },
-	        _react2.default.createElement(_reactGmaps.Marker, { lat: 37.581770, lng: 126.985966, draggable: true, onDragEnd: this.onDragEnd }),
+	        newMarker,
 	        _react2.default.createElement(_UploadView2.default, { newLng: this.state.newLng, newLat: this.state.newLat }),
 	        this.props.marker.map(function (map, i) {
 	          return _react2.default.createElement(_reactGmaps.Marker, { lat: map.lat, lng: map.lng, key: i, onClick: _this2.mapClick.bind(_this2, { map: map }) });
@@ -38628,19 +38641,26 @@
 	    _this.state = {
 	      memo: "upload"
 	    };
+	    _this.uploadClick = _this.uploadClick.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Upload, [{
-	    key: 'render',
-
-	    //1. Upload 전체 클릭하면 photo.js에서 UploadView.js 로 내용물 변경.  1-2. 포인터 추가....
+	    key: 'uploadClick',
+	    value: function uploadClick(e) {
+	      this.props.onClick(e);
+	    }
+	    //1. Upload 부분 클릭하면 photo.js에서 UploadView.js 로 내용물 변경. //ok 
+	    //1-2. 포인터 추가.
 	    //2. 포인터를 적당한 위치에 놓으면 UploadView.js 칸에 입력값 뜨고,  
 	    //3. 나머지칸 입력한 뒤 엔터 누르면 db 에 입력값 저장후 원래 photo.js 뜬다. 
+
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        _reactRouter.Link,
-	        { to: 'upload' },
+	        { to: 'upload', onClick: this.uploadClick },
 	        _react2.default.createElement(
 	          'div',
 	          null,

@@ -12,7 +12,7 @@ ReactDOM.render((<Router history={browserHistory}>
 					<Route component={Layout}>
 					  <Route path='/' component={App}>
 					    <Route path="photo" component={Photo}/>
-						<Route path="upload" component={UploadView}/>
+							<Route path="upload" component={UploadView}/>
 						{/*<Route path="*" component={NoMatch}/>*/}
 					  </Route>
 					</Route>

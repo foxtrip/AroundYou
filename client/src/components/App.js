@@ -16,9 +16,11 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      mapList : [] //default 
+      mapList : [], //default 
+      newmarker : false
     };
     this.loadDataFromServer=this.loadDataFromServer.bind(this);
+    this.uploadClick = this.uploadClick.bind(this);
   };
   loadDataFromServer(){
     $.ajax({  //ajax call 바로 해서 받은 파일을 this.mapList로 
@@ -35,6 +37,9 @@ class App extends React.Component{
   };
   componentDidMount() {  
     this.loadDataFromServer();
+  };
+  uploadClick(){ //map에 marker 생성. 
+    this.setState({newmarker:true});
   };
   mapClick(){ //아직 안씀
     console.log("mpp clicked");
@@ -64,7 +69,7 @@ class App extends React.Component{
         <div id="map">
           <div id="outer">
             <div id="inner">
-              <Map marker={this.state.mapList} onClick={this.mapClick}/>
+              <Map marker={this.state.mapList} newmarker= {this.state.newmarker} onClick={this.mapClick}/>
             </div>
           </div>
         </div >
@@ -72,7 +77,7 @@ class App extends React.Component{
           <div id="upload">
             <div id="outer">
               <div id="inner">
-                <Upload />
+                <Upload onClick = {this.uploadClick}/>
               </div>
             </div>
           </div>
