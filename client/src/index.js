@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Router, Route, browserHistory } from 'react-router'
 import Layout from './components/Layout'
-import App from './components/App';
+import App from './components/App'
 import UploadView from './components/UploadView'
 import Photo from './components/Photo'
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+import { store, connector } from './components/Store'
+import { Provider } from 'react-redux'//REDUX
 
-const rootElement = document.getElementById('wrap');
-
-ReactDOM.render((<Router history={browserHistory}>
+ReactDOM.render((
+		<Provider store = {store}>
+			<Router history={browserHistory}>
 					<Route component={Layout}>
 					  <Route path='/' component={App}>
 					    <Route path="photo" component={Photo}/>
@@ -17,4 +19,5 @@ ReactDOM.render((<Router history={browserHistory}>
 					  </Route>
 					</Route>
 				</Router>
-	), rootElement);
+			</Provider>
+	), document.getElementById('wrap'));

@@ -1,12 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
+import { store, connector } from './Store';//REDUX
 //1. Upload 전체 클릭하면 photo.js에서 UploadView.js 로 내용물 변경.  1-2. 포인터 추가....
 //2. 포인터를 적당한 위치에 놓으면 UploadView.js 칸에 입력값 뜨고,  
 //3. 나머지칸 입력한 뒤 엔터 누르면 db 에 입력값 저장후 원래 photo.js 뜬다. 
 class UploadView extends React.Component{
 	constructor(props) {
 		super(props)
-		this.state = {userid: 'ley', lat:0, lng:0, tag:""};
+		this.state = {userid: 'ley', tag:""};
 		this.loadMessage = this.loadMessage.bind(this);
     this.sendDataToServer = this.sendDataToServer.bind(this);
 	};
@@ -14,14 +15,14 @@ class UploadView extends React.Component{
   sendDataToServer(){
     const data = {
       userid: this.state.userid,
-		  lat: this.state.lat,
-		  lng: this.state.lng,
+		  lat: this.props.pinLocation.lat,
+		  lng: this.props.pinLocation.lng,
 		  tag: this.state.tag,
 		  image:""
     };
     $.ajax({
       type:'POST',
-      url:'/upload',
+      url:'/uploadView',
       dataType:'jsonp',
       data: data, 
       success: ((data)=> {
@@ -34,7 +35,7 @@ class UploadView extends React.Component{
   };
 
   loadMessage(e) { 
-    this.setState({lat:this.props.sorceValue.lat ,lng:this.props.sorceValue.lng ,tag:e.target.value});
+    this.setState({tag:e.target.value});
   };
 
   render(){
@@ -50,8 +51,7 @@ class UploadView extends React.Component{
         </form>    
     )
   };
-
 };
 
-export default UploadView;
+export default connector(UploadView);
 

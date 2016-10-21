@@ -30,9 +30,9 @@ class Login extends React.Component{
         console.log('get decoded token from google? ',data);
         this.setState({userId:data.name})  
        }).bind(this),      
-      error: (err) => {
+      error: ((err) => {
         console.log('decoding error');
-      }
+      }).bind(this)
     });
   };
 
